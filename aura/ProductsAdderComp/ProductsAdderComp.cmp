@@ -1,0 +1,55 @@
+<aura:component controller="OpportunityItemEditController">
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    <aura:dependency resource="markup://force:navigateToSObject" type="EVENT"/>
+    
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="opportunityItems" type="Object[]" default="[{'productName':'Test'},{'productName':'Test2'}]"/>
+    <aura:attribute name="showCards" type="Boolean" default="false" />
+    <aura:attribute name="recordId" type="Id" />
+    <header Style="Padding:5px" >
+        <div class="slds-grid slds-wrap slds-grid--align-spread">
+            <div class="slds-col slds-align-bottom">
+                <div class="slds-grid">
+                    <div class="slds-dropdown-trigger">
+                        <div class="slds-grid slds-type-focus slds-no-space">
+                            <h1 class="slds-page-header__title slds-truncate" title="All records">
+                                Add Products
+                            </h1>                        
+                        </div>
+                    </div>
+                </div>                                
+            </div>
+        </div>                
+    </header>     
+    <aura:renderIf IsTrue="{!v.showCards}">
+        <div style="Padding:5px" 
+             class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.opportunityItems}" var="item">
+                <c:UnitProductAdderComp opportunityItem="{!item}"/>
+            </aura:iteration>
+        </div>        
+        <aura:set attribute="else" >
+            <c:ProductsAdderTable opportunityItems="{!v.opportunityItems}"/>	
+            
+        </aura:set>
+    </aura:renderIf>
+    
+    <aura:renderIf isTrue="{!v.showSpinner}">
+        <c:MediumSpinner />
+        <aura:set attribute="else">
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button--neutral"
+                        onclick="{!c.cancel}" 
+                        name="cancel">
+                    Cancel
+                </button>
+                <button class="slds-button slds-button--neutral slds-button--brand"
+                        onclick="{!c.save}" 
+                        name="select">
+                    Save
+                </button>
+            </div>
+        </aura:set>
+    </aura:renderIf>
+    
+</aura:component>

@@ -1,0 +1,52 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    
+    <aura:attribute name="criteriaIds" type="String[]" />
+    <aura:attribute name="cId" type="String" />  
+    <aura:attribute name="criteriaMap" type="Map" />
+    <aura:attribute name="fieldList"  type="Object[]" />
+    <aura:attribute name="operatorList" type="Object[]" />
+    <aura:attribute name="fieldName" type="String" />
+    <aura:attribute name="operator" type="String" />
+    <aura:attribute name="fieldValue" type="String" />
+    
+    <aura:handler name="change" action="{!c.calculateCriteria}" value="{!v.fieldName}" />
+    <aura:handler name="change" action="{!c.calculateCriteria}" value="{!v.operator}" />
+    <aura:handler name="change" action="{!c.calculateCriteria}" value="{!v.fieldValue}" />
+    
+    
+    <li class="slds-item">
+        <button class="slds-button slds-button--icon-container "
+                onclick="{!c.deleteCondition}">
+            <c:svg ariaHidden="true" class="slds-button__icon slds-button--icon" 
+                   xlinkHref="/resource/SLDS203/assets/icons/utility-sprite/svg/symbols.svg#delete"/>          
+            <span class="slds-assistive-text">
+                Delete
+            </span>
+        </button>
+        <div class="slds-grid">
+            <div class="slds-col">
+                <ui:inputSelect class="slds-select" value="{!v.fieldName}">
+                    <aura:iteration items="{!v.fieldList}" var="fieldEntity" >
+	                    <ui:inputSelectOption class="{!fieldEntity.class}"
+                                              text="{!fieldEntity.value}"
+                                              label="{!fieldEntity.label}"/>
+					</aura:iteration>	
+                </ui:inputSelect> 
+            </div>
+            <div class="slds-col">
+                <ui:inputSelect class="slds-select" value="{!v.operator}">
+                     <aura:iteration items="{!v.operatorList}" var="operatorEntity" >
+	                    <ui:inputSelectOption class="{!operatorEntity.class}"
+                                              text="{!operatorEntity.value}" 
+                                              label="{!operatorEntity.label}"/>
+					</aura:iteration>	
+                </ui:inputSelect>  
+            </div>
+            <div class="slds-col">
+                <ui:inputText value="{!v.fieldValue}" />
+            </div>
+        </div>
+    </li>
+    
+</aura:component>

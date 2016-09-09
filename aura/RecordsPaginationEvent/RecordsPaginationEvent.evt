@@ -1,0 +1,7 @@
+<aura:event type="Component">
+    <aura:attribute name="message" type="String" />
+    <aura:attribute name="currentPageNumber" type="Integer" />
+    <aura:attribute name="totalPageNumber" type="Integer" />
+    <aura:attribute name="numPerPage" type="Integer" />
+    
+</aura:event>

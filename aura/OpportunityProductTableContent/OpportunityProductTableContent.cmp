@@ -1,0 +1,144 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="checkAllForCurrentPage"
+                    type="Boolean" />
+    <aura:attribute name="productFeeds" 
+                    type="OpportunityItemEditController.PriceBookEntryFeed[]"/>
+    <aura:attribute name="currentRecords" 
+                    type="OpportunityItemEditController.PriceBookEntryFeed[]" />
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="totalNumber" type="Integer" />
+    <aura:attribute name="numPerPage" type="Integer" />
+    <aura:attribute name="opportunityItems" type="Object[]" />
+    <c:RecordsPaginationCom allRecords="{!v.productFeeds}" 
+                            pageNumber="{!v.pageNumber}" 
+                            recordsOfCurrentPage="{!v.currentRecords}" />
+    
+    
+    <aura:handler name="pagination" event="c:RecordsPaginationEvent" action="{!c.handleComponentEvent}"/>    
+    <aura:handler name="change" action="{!c.updateSelectAll}" value="{!v.currentRecords}" />
+    
+    <article class="" id="oc-demo-content" style="min-height: 100px;">                
+        <div class="r-table-wrap slds-scrollable--x" style="overflow-y: auto;">                       
+            <div style="Padding:5px">
+                <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+                    <thead>
+                        <tr class="slds-text-heading--label">                        
+                            <td role="gridcell" class="slds-cell-shrink" scope="col">
+                                <label class="slds-checkbox">
+                                    <ui:inputCheckbox value="{!v.checkAllForCurrentPage}" 
+                                                      name="selectAll" 
+                                                      change="{!c.checkAllCheckBoxes}" />
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-assistive-text">Select All</span>
+                                </label>
+                            </td>
+                            
+                            <th scope="col">
+                                <div class="slds-truncate" title="Product">Product</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Product Code">Product Code</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="List Price">List Price</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Product Description">Product Description</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="Product Family">Product Family</div>
+                            </th>      
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                        <aura:iteration items="{!v.currentRecords}" var="productFeed" >
+                            <tr>
+                                <td role="gridcell" class="slds-cell-shrink" data-label="Select row Cloudhub">
+                                    <label class="slds-checkbox">
+                                        <ui:inputCheckbox value="{!productFeed.isSelected}" change="{!c.checkAllCheckBoxes}" />
+                                        <span class="slds-checkbox--faux"></span>
+                                        <span class="slds-assistive-text"></span>
+                                    </label>
+                                </td>
+                                
+                                <th scope="row" data-label="Product">
+                                    <div class="slds-truncate" title="{!productFeed.pBEntry.Product2.Name}">
+                                        <a href="{!productFeed.linkURL}">
+                                            {!productFeed.pBEntry.Product2.Name}
+                                        </a>
+                                    </div>
+                                </th>
+                                <td data-label="Product Code">
+                                    <div class="slds-truncate" title="{!productFeed.pBEntry.Product2.ProductCode}">
+                                        {!productFeed.pBEntry.Product2.ProductCode}
+                                    </div>
+                                </td>
+                                <td data-label="List Price">
+                                    <div class="slds-truncate" title="{!productFeed.pBEntry.UnitPrice}">
+                                        <ui:outputCurrency value="{!productFeed.pBEntry.UnitPrice}" />
+                                    </div>
+                                </td>
+                                <td data-label="Product Description">
+                                    <div class="slds-truncate" >
+                                        {!productFeed.pBEntry.Product2.Description}
+                                    </div>
+                                </td>
+                                <td data-label="Product Family">
+                                    <div class="slds-truncate" title="{!productFeed.pBEntry.Product2.Family}">
+                                        {!productFeed.pBEntry.Product2.Family}
+                                    </div>
+                                </td>    
+                            </tr> 
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="Padding:5px"
+                 class="slds-button-group slds-grid--align-center" role="group">
+                <button onclick="{!c.updateView}" name="first"
+                        class="slds-button slds-button--neutral"
+                        aura:id="first"
+                        >
+                    First
+                </button>
+                <button onclick="{!c.updateView}" name="previous"
+                        class="slds-button slds-button--neutral"
+                        aura:id="previous">
+                    Previous
+                </button>
+                <button onclick="{!c.updateView}" 
+                        name="next"
+                        aura:id="next"
+                        class="slds-button slds-button--neutral"
+                        >
+                    Next
+                </button>
+                <button onclick="{!c.updateView}" 
+                        aura:id="last"
+                        name="last"
+                        class="slds-button slds-button--neutral">
+                    Last
+                </button>
+            </div>
+        </div>
+		<div style="Padding:5px" class="slds-modal__footer">
+                <button onclick="{!c.cancel}" 
+                        name="cancel"
+                        aura:id="cancel"
+                        class="slds-button slds-button--neutral">
+                    Cancel
+                </button>
+                <button onclick="{!c.selectItems}" 
+                        name="select"
+                        aura:id="select"
+                        class="slds-button slds-button--brand">
+                    Select
+                </button>
+            </div>
+    </article>
+</aura:component>

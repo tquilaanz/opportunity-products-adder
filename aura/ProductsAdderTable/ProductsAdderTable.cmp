@@ -1,0 +1,71 @@
+<aura:component >
+    <aura:attribute name="opportunityItems" type="Object[]" />
+    <div style="Padding:5px">
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-heading--label">                                                                        
+                    <th scope="col">
+                        <div class="slds-truncate" title="Product">Product</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">
+                            <span class="requiredLabel ">
+                                *
+                            </span>
+                            Quantity
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Sales Price">
+                            <span class="requiredLabel ">
+                                *
+                            </span>
+                            Sales Price
+                        </div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Date">Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Line Description">Line Description</div>
+                    </th>                             
+                </tr>
+            </thead>
+            
+            <tbody>
+                <aura:iteration items="{!v.opportunityItems}" var="opportunityItem" >
+                    <tr>                                                        
+                        <th scope="row" data-label="Product">
+                            <ui:outputText value="{!opportunityItem.productName}"/>
+                        </th>
+                        <td data-label="Quantity">
+                            <ui:inputNumber class="UIField"
+                                            value="{!opportunityItem.quantity}"
+                                            required="true"/>
+                            
+                        </td>
+                        <td data-label="Sales Price">
+                            
+                            <ui:inputNumber class="UIField"
+                                            value="{!opportunityItem.salesPrice}"
+                                            required="true"/>
+                            
+                        </td>
+                        <td data-label="Date">                            
+                            <ui:inputDate aura:id="date"
+                                          class="UIField"  
+                                          value="{!opportunityItem.serviceDate }" 
+                                          displayDatePicker="true"/>                            
+                        </td>
+                        <td data-label="lineDescription">
+                            <ui:inputText aura:id="lineDescription"                  
+                                          class="UIField"                                 
+                                          value="{!opportunityItem.description}" />
+
+                        </td>    
+                    </tr> 
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+</aura:component>

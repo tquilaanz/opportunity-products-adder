@@ -1,0 +1,69 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="toggle" type="Boolean" default="false" />    
+    <aura:attribute name="pageNumber" type="Integer" default="1"/>
+    <aura:attribute name="totalNumber" type="Integer" />
+    <aura:attribute name="numPerPage" type="Integer" />
+    <aura:handler name="change" value="{!v.toggle}" action="{!c.toggleFilter}" />
+           
+    <header Style="Padding:5px" >
+        <div class="slds-grid slds-wrap slds-grid--align-spread">
+            <div class="slds-col slds-align-bottom">
+                <div class="slds-grid">
+                    <div class="slds-dropdown-trigger">
+                        <div class="slds-grid slds-type-focus slds-no-space">
+                            <h1 class="slds-page-header__title slds-truncate" title="All records">
+                                Find Products                            
+                            </h1>                        
+                        </div>
+                    </div>
+                </div>                                
+            </div>
+            
+            <div class="slds-col slds-no-flex slds-align-bottom" style="margin-left: auto;">
+                <div class="slds-grid">
+                    <div class="slds-dropdown-trigger">
+                        <button aria-haspopup="true" class="slds-button slds-button--icon-container" id="oc-demo-sort" name="sort" title="Sort by" type="button">
+                            <c:svg ariaHidden="true" class="slds-button__icon slds-button--icon" 
+                                   xlinkHref="/resource/SLDS203/assets/icons/utility-sprite/svg/symbols.svg#sort"
+                                   />
+                            <span class="slds-assistive-text">
+                                Sort by
+                            </span>
+                        </button>
+                        <div class="slds-dropdown slds-dropdown--right" id="oc-demo-dd">
+                            <ul class="dropdown__list" role="menu">
+                                <li class="slds-dropdown__item" 
+                                    role="menuitem option" 
+                                    tabindex="-1">
+                                    <a class="slds-truncate" 
+                                       data-value="age" 
+                                       href="#" 
+                                       tabindex="-1">
+                                        Age
+                                    </a>
+                                </li>                            
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <button class="slds-button slds-button--icon-container"
+                            onclick="{!c.updateToggle}"
+                            aura:id="filterToggle"
+                            >
+                        <c:svg ariaHidden="true" class="slds-button__icon" 
+                               xlinkHref="/resource/SLDS203/assets/icons/utility-sprite/svg/symbols.svg#filterList"/>                        
+                        <span class="slds-assistive-text">
+                            Show Filter
+                        </span>
+                    </button>                                        
+                </div>
+            </div>            
+        </div>   
+        <div class="slds-text-heading--label">
+            Current page {!v.pageNumber} • Total Page Number {!v.totalNumber} • Records Per Page {!v.numPerPage}
+        </div>  
+    </header> 
+      
+   
+</aura:component>

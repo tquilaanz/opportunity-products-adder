@@ -1,0 +1,18 @@
+<aura:component >
+    <aura:attribute name="allRecords" type="Object[]" required="true"/>
+    <aura:attribute name="numPerPage" type="Integer" default="10"/>
+    <aura:attribute name="pageNumber" type="Integer" default="1" />
+    <aura:attribute name="totalPages" type="Integer" default="0" />
+    <aura:attribute name="totalSize" type="Integer" />    
+    <aura:attribute name="recordsOfCurrentPage" type="Object[]" required="true"/>
+    
+    <aura:handler name="change" value="{!v.allRecords}" action="{!c.resetAllData}" />
+    <aura:handler name="change" value="{!v.pageNumber}" action="{!c.changePage}" />
+    <aura:handler name="change" value="{!v.allRecords}" action="{!c.changeReocrds}" />
+    <aura:handler name="change" value="{!v.recordsOfCurrentPage}" action="{!c.changeReocrds}" />
+    
+    
+    <aura:registerEvent name="pagination" type="c:RecordsPaginationEvent"/>
+    <aura:handler name="change" value="{!v.totalPages}" action="{!c.broadCastTotalPages}" />    
+    
+</aura:component>

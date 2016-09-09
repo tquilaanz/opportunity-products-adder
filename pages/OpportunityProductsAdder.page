@@ -1,0 +1,23 @@
+<apex:page StandardController="Opportunity" >
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    <div id="lightning" />
+        <script>
+            window.addEventListener('navigateToSObject', function(e){
+               if (sforce.one) {
+                   sforce.one.navigateToSObject("{!Opportunity.Id}" );
+                } 
+            });
+            
+            
+            $Lightning.use("c:OpportunityItemsAddApp", function() {
+              $Lightning.createComponent("c:OpportunityItemsAdder",
+              { recordId : "{!Opportunity.Id}" },
+              "lightning",
+              function(cmp) {
+                  
+              });
+            });
+            
+        </script>
+
+</apex:page>

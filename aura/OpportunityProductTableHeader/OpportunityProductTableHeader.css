@@ -1,0 +1,7 @@
+.THIS {
+}
+.THIS .slds-is-selected {
+    background-color: #0070d2;
+    border: 1px solid #0070d2;
+    color: white;
+}

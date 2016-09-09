@@ -1,0 +1,14 @@
+.THIS {
+}
+.THIS .slds-input {
+    width: 90%;
+}
+.THIS.forceRelatedListCardDesktop {
+    background-color: rgb(244, 246, 249);
+    color: rgb(22, 50, 92);
+    margin: 0 0 1rem 0;
+    border-radius: .25rem;
+    overflow: hidden;
+    border: 1px solid rgb(216, 221, 230);
+	height: 350px;
+}

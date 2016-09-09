@@ -1,0 +1,49 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="opportunityItem" type="Object" />
+		<article class="forceRelatedListCardDesktop  slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3">
+
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">Product</label>
+                <ui:outputText value="{!v.opportunityItem.productName}"/>
+            </div>
+            
+            <div class="slds-form-element">            
+                <label class="slds-form-element__label">
+                    Quantity
+                </label>
+                <div class="slds-form-element__control">
+                    <ui:inputNumber class="slds-input slds-required" 
+                                    value="{!v.opportunityItem.quantity}"
+                                    required="true"/>
+                </div>
+            </div>
+            <div class="slds-form-element">            
+                <label class="slds-form-element__label">Sales Price</label>
+                <div class="slds-form-element__control">
+                    <ui:inputNumber class="slds-input slds-required" 
+                                    value="{!v.opportunityItem.salesPrice}"
+                                    required="true"/>
+                </div>
+                
+            </div>
+            
+            <div class="slds-form-element">
+                <ui:inputDate labelClass="slds-form-element__label" 
+                              class="slds-input" 
+                              aura:id="dateField" label="Date" 
+                              value="{!v.opportunityItem.date}" 
+                              displayDatePicker="true"/>                        
+            </div>
+            
+            <div class="slds-form-element">
+                <ui:inputTextArea labelClass="slds-form-element__label" 
+                                  aura:id="lineDescription" 
+                                  label="Line Description"
+                                  class="slds-form-element__control slds-input"
+                                  value="{!v.opportunityItem.description}" 
+                                  rows="1"/>
+            </div>
+
+	</article>
+</aura:component>

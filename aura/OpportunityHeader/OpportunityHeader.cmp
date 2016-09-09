@@ -1,0 +1,31 @@
+<aura:component controller="OpportunityItemEditController" >
+    <ltng:require styles="/resource/SLDS203/assets/styles/salesforce-lightning-design-system.css" />
+    
+    <aura:attribute name="recordId" type="Id" required="true" />
+	<aura:attribute name="opportunity" type="Opportunity" access="private"/>
+    <aura:attribute name="redirectURL" type="String" access="private"/>     
+    <aura:handler name="init" action="{!c.initiateOpportunity}" value="{!this}"/>            
+    
+    <article class="slds-card">
+      <header class="slds-card__header slds-grid">
+        <div class="slds-media slds-media--center slds-has-flexi-truncate">
+          <div class="slds-media__figure">
+            <c:svg class="slds-icon slds-icon-standard-opportunity slds-icon--medium "
+                   xlinkHref="/resource/SLDS203/assets/icons/standard-sprite/svg/symbols.svg#opportunity" />        
+          </div>
+          <div class="slds-media__body slds-truncate">
+            <p class="slds-text-heading--label" 
+               data-aura-rendered-by="728:1;0" style="opacity: 1;">
+				Product Selection for
+	        </p>
+            <h2>
+                <a href="{!v.redirectURL}" class="slds-text-link--reset">
+                    <span class="slds-text-heading--small">{!v.opportunity.Name}</span>
+                </a>
+            </h2>
+          </div>
+        </div>
+      </header>      
+	</article>
+    <div style="Padding: 5px" class="slds-text-heading--label">Enter your keyword and filter criteria, then click Search to begin your search. Click More filters to use more than one filter. Search results include all records that match both your keyword and filter entries.</div>
+</aura:component>
