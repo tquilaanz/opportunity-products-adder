@@ -1,0 +1,3 @@
+<aura:event type="Component" description="Event template" >
+    <aura:attribute name="_filter_unit" type="Object" />
+</aura:event>

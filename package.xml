@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpportunityProductAdder</fullName>
     <types>
-        <members>*</members>
+        <members>FieldFilterController</members>
+        <members>FieldFilterControllerTest</members>
+        <members>GlobalUtility</members>
+        <members>GlobalUtilityTest</members>
+        <members>LookUpControllers</members>
+        <members>LookUpControllersTest</members>
+        <members>OpportunityLineItemService</members>
+        <members>OpportunityLineItems</members>
+        <members>OpportunityProductsAdderController</members>
+        <members>OpportunityProductsAdderControllerTest</members>
+        <members>PriceBookEntrySelector</members>
+        <members>PricebookEntrySelectorTest</members>
+        <members>PricebookEntryService</members>
+        <members>ProductFilterCondition</members>
+        <members>ProductSelector</members>
+        <members>ProductService</members>
+        <members>Products</members>
+        <members>TestDataFactory</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>CreateProductEvent</members>
+        <members>FilterFieldColumn</members>
+        <members>FilterMessage</members>
+        <members>InputColumn</members>
+        <members>LookUp</members>
+        <members>OpportunityPricebookCheck</members>
+        <members>OpportunityProductAdderApp</members>
+        <members>OpportunityProductEvent</members>
+        <members>OpportunityProductTable</members>
+        <members>OpportunityProductsAdder</members>
+        <members>PaginationButtons</members>
+        <members>PriceBookSelection</members>
+        <members>ProductSelection</members>
+        <members>ProductSelectionFilter</members>
+        <members>ProductSelectionTable</members>
+        <members>ProductSelectionTableListView</members>
+        <members>RecordsPaginator</members>
+        <members>TableHeader</members>
+        <members>Tooltip</members>
+        <members>svg</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>*</members>
+        <members>slds212</members>
         <name>StaticResource</name>
     </types>
     <version>36.0</version>

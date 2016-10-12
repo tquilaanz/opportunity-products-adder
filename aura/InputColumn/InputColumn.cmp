@@ -1,0 +1,54 @@
+<aura:component >
+    <aura:attribute name="_value" type="String" 
+                    required="true"/>
+    <aura:attribute name="_field_type" type="String" 
+                    required="true"/>
+    
+
+    <aura:If isTrue="{!v._field_type=='STRING' || v._field_type=='REFERENCE' || v._field_type=='ID'}">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label " for="text-input-01">Value</label>
+            <div class="slds-form-element__control">
+                <ui:inputText class="slds-input" 
+                              placeholder="Text" 
+                              value="{!v._value}"/>
+            </div>
+        </div>
+    </aura:If>
+    
+    <aura:If isTrue="{!v._field_type=='INTEGER' || v._field_type=='DOUBLE'}">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label " for="text-input-01">Value</label>
+            <div class="slds-form-element__control">
+                <ui:inputNumber class="slds-input" 
+                              placeholder="Number" 
+                              value="{!v._value}"/>
+            </div>
+        </div>
+    </aura:If>
+    
+    <aura:If isTrue="{!v._field_type=='DATETIME' || v._field_type=='DATE'}">
+        <div class="slds-form-element">
+            <label class="slds-form-element__label " for="text-input-01">Value</label>
+            <div class="slds-form-element__control">
+                <ui:inputDate aura:id="expdate" 
+                              class="field" 
+                              value="{!v._value}" 
+                              displayDatePicker="true" />     
+            </div>
+        </div>
+    </aura:If>
+    <aura:If isTrue="{!v._field_type=='BOOLEAN'}">
+        <div class="slds-form-element">
+            <label class="slds-checkbox--toggle">
+                <span class="slds-form-element__label slds-m-bottom--none">Value</span>
+                <input name="checkbox" type="checkbox" aria-describedby="toggle-desc" onchange="{!c.updateValue}"/>
+                <span id="toggle-desc" class="slds-checkbox--faux_container" aria-live="assertive">
+                    <span class="slds-checkbox--faux"></span>
+                    <span class="slds-checkbox--on">Enabled</span>
+                    <span class="slds-checkbox--off">Disabled</span>
+                </span>
+            </label>
+        </div>
+    </aura:If>
+</aura:component>

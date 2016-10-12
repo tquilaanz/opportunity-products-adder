@@ -1,0 +1,20 @@
+.THIS{
+    
+}
+
+.THIS.element-with-tooltip .tooltip {
+    display: none;
+}
+.THIS.element-with-tooltip:hover .tooltip {
+    display: inline-block;
+    position: absolute;
+    top: -65px;
+    width: 290px;
+    left: -15px;
+}
+.THIS .slds-button--icon{
+    color:rgb(194, 57, 52);
+}
+.THIS .slds-popover--tooltip {
+    background: rgb(194, 57, 52);
+}

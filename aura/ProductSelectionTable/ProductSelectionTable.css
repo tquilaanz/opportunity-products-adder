@@ -1,0 +1,23 @@
+.THIS {
+}
+.THIS table.forceBaseListView {
+    border-collapse: separate;
+    min-width: 100%;
+}
+.THIS .subHeader{
+    padding:15px    
+}
+.THIS .slds-is-selected .slds-icon{
+    background-color: #0070d2;
+    border: 1px solid #0070d2;
+    fill: white;
+}
+
+.THIS .pageTitle{
+    font-size: 1.25rem;
+    color: rgb(22, 50, 92);
+}
+.THIS .slds-checkbox .slds-checkbox--faux {
+    width: 1.3rem;
+    height: 1.3rem;
+}

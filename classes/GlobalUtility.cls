@@ -1,6 +1,48 @@
+/*****
+ *  GlobalUtility is used to deal with logic that will deal generic SObject
+ *  Created By: Alvin Zhou
+ *  Date: 20/09/2016
+ * 
+****/
 public class GlobalUtility {
     
-     public static List<Schema.DescribeFieldResult> getFieldApiNames(SObjectType sobjType){
+    /***
+     * Description: get SObject type from sobject name and field name
+     * Created By: Alvin Zhou
+     * Date: 20/09/2016
+     * 
+     * Parameter
+    ****/
+    //get Object type
+    public static String getSObjectType(String sobjectName, String filedName){
+        String targetSobj = '';
+        SObjectType sobjType = Schema.getGlobalDescribe().get(sobjectName);
+        if(sobjType == null){
+            throw new GlobalUtilityException('The object ' + sobjectName + ' is not accessible');
+        }
+        Map<String,Schema.SObjectField> mfields = sobjType.getDescribe().fields.getMap();
+        Schema.SObjectField singleField=mfields.get(filedName);
+        if(singleField == null){
+            throw new GlobalUtilityException('The field (' + singleField + ') is not accessible for the object ' + sobjectName);
+        }
+        
+        //if it is null point exception, it means that the field is not accessible 
+        List<Schema.sObjectType> targetSobjTypes = singleField.getdescribe().getReferenceTo();
+        
+        if(!targetSobjTypes.isEmpty()){
+           targetSobj = targetSobjTypes.get(0).getDescribe().getName(); 
+        }else{
+            throw new GlobalUtilityException('The field (' + singleField + ') is not an reference field for the object ' + sobjectName);
+        }
+        return targetSobj;
+    }
+    
+    public static List<Schema.DescribeFieldResult> getFieldApiNames(String sobjectName){
+        Schema.SObjectType conversobjTypeType = Schema.getGlobalDescribe().get(sobjectName);
+        return getFieldApiNames(conversobjTypeType);
+    }
+    
+    public static List<Schema.DescribeFieldResult> getFieldApiNames(SObjectType sobjType){
         Map<String,Schema.SObjectField> mfields = sobjType.getDescribe().fields.getMap();
         List<Schema.DescribeFieldResult> fieldListResults = new List<Schema.DescribeFieldResult>(); 
         for(String key : mfields.keySet()){
@@ -12,102 +54,89 @@ public class GlobalUtility {
         }
         return fieldListResults;
      }
-     
-     public static String queryConditions( Conditions cond, Boolean SOQL){
-        String prefix = '';
-        if(SOQL){
-            prefix = 'Product2.';
-        }
-        List<Schema.DescribeFieldResult> fieldListResults 
-            = GlobalUtility.getFieldApiNames(Product2.SobjectType);
-        Map<String, Schema.DescribeFieldResult> fieldResultMap 
-            = new Map<String, Schema.DescribeFieldResult>();
-        for(Schema.DescribeFieldResult result: fieldListResults){
-            fieldResultMap.put(result.getName(), result);
-        }
-        Map<String, Conditions.Filter> filterMap = cond.criteriaMap;
-        String queryString = '';
-        for(String cId: filterMap.keySet()){
-            Conditions.Filter filter = filterMap.get(cId);
-            if(filter.operator == null || filter.fieldName == null){
-                continue;
-            }
-            String operator = filter.operator;
-            String fieldName = filter.fieldName;
-            String fieldValue = filter.fieldValue;
-            String unitQuery = '' ;
-            String operatorRAW = '';
-            Schema.DescribeFieldResult result 
-                = fieldResultMap.get(fieldName);
-            System.debug('Field Name is ' + fieldName);
-            if(operator == 'Equals'){
-                operatorRAW = ' = ';
-            }else if(operator == 'Not equals'){
-                operatorRAW = ' != ';
-            }else if(operator == 'Contains'){
-                operatorRAW = ' like ';
-            }else if(operator == 'Start with'){
-                operatorRAW = ' like ';
-            }
-            
-            fieldName = prefix + fieldName;
-            if(fieldValue != null){
-                //Translate Field Value
-                if(result.getType() == Schema.DisplayType.Currency 
-                    || result.getType() == Schema.DisplayType.Double){
-                    if(operator == 'Contains' || operator == 'Start with' ){
-                        continue;
-                    }
-                    unitQuery = fieldName + operatorRAW + Double.valueOf(fieldValue);
-                }else if(result.getType() == Schema.DisplayType.ID 
-                    || result.getType() == Schema.DisplayType.Reference){
-                    if(operator == 'Contains' || operator == 'Start with' ){
-                        continue;
-                    }
-                    unitQuery = fieldName + operatorRAW + '\'' +(String) fieldValue +'\'';
-                    
-                }else if(result.getType() == Schema.DisplayType.Date){
-                    if(operator == 'Contains' || operator == 'Start with' ){
-                        continue;
-                    }
-                    unitQuery = fieldName + operatorRAW + Date.valueOf(fieldValue);
-                    
-                }else if(result.getType() == Schema.DisplayType.DateTime){
-                    if(operator == 'Contains' || operator == 'Start with' ){
-                        continue;
-                    }
-                    unitQuery = fieldName + operatorRAW + DateTime.valueOf(fieldValue);
-                    
-                }else if(result.getType() == Schema.DisplayType.Integer){
-                   if(operator == 'Contains' || operator == 'Start with' ){
-                        continue;
-                    }
-                    unitQuery = fieldName + operatorRAW + Integer.valueOf(fieldValue); 
-                }else if(result.getType() == Schema.DisplayType.MultiPicklist){
-                    continue;   
-                }else if(result.getType() == Schema.DisplayType.Email 
-                    || result.getType() == Schema.DisplayType.String 
-                    || result.getType() == Schema.DisplayType.TextArea
-                    || result.getType() == Schema.DisplayType.Picklist){
-                    if(operator != 'Contains' ){
-                        unitQuery = fieldName + operatorRAW + '\'' +(String) fieldValue +'\'';
-                    }else if(operator == 'Start with' ){
-                        unitQuery = fieldName + operatorRAW + '\'%' +(String) fieldValue +'\'';
-                    }else{
-                        unitQuery = fieldName + operatorRAW + '\'%' +(String) fieldValue +'%\'';
-                    }
-                }
+    
+    public static String fillStringWithSlods(
+        List<ProductFilterCondition.Filter> filterList, String filterLogic){
+        String condition = '';
+        Integer strLength = filterLogic.length();
+        String numericString = '';
+        String tempNumber = '';
+        String templateOperator = '';
+        System.debug('########The filter logic is #########' + filterLogic);
+        System.debug('########The filter list size is #########' + filterList.size());
+        for(integer i =0;i<filterLogic.length();i++){
+            String s= filterLogic.mid(i,1);
+            if(s.isNumeric()){
+                numericString +=s;
+                tempNumber = numericString;
+                if(templateOperator != ''){
+                   condition += templateOperator; 
+                   templateOperator = '';
+                } 
                 
-                if(queryString == ''){
-                    queryString = unitQuery;
-                }else{
-                    queryString = queryString + ' and ' + unitQuery;
-                }
+            }else{
+               templateOperator += s;
+               numericString = ''; 
             }
             
+            if(numericString == '' && tempNumber != ''){
+                Integer indexNum = Integer.valueOf(tempNumber);
+                indexNum --;
+                ProductFilterCondition.Filter filter = null;
+                try{
+                   filter = filterList.get(indexNum);
+                }catch(Exception ex){
+                    throw new GlobalUtilityException('Filter logic provided is incorrect!!!');
+                }
+                condition += ' ';
+                condition += filter.getFilterUnit();
+                tempNumber = '';
+                if(i == filterLogic.length() -1){
+                    condition += s;
+                }
+            }
         }
-        
-        return queryString;
+        if(tempNumber != ''){
+            if(templateOperator != ''){
+                condition += templateOperator;
+            }
+            Integer indexNum = Integer.valueOf(tempNumber);
+            indexNum --;
+            ProductFilterCondition.Filter filter = null;
+            try{
+               filter = filterList.get(indexNum);
+            }catch(Exception ex){
+                throw new GlobalUtilityException('Filter logic provided is incorrect!!!');
+            }
+            condition += ' ';
+            condition += filter.getFilterUnit();
+            tempNumber = '';
+        }
+        return condition;
     }
-
+    
+    public static Map<String, Object> handleWithDMLException(DMLException ex){
+        Integer errorNumber = ex.getNumDml();
+        List<Map<String, String>> errorResults = new List<Map<String, String>>();
+        Map<String, Object> errors = new Map<String, Object>();
+        for(Integer i = 0; i < errorNumber; i ++){
+            Map<String, String> errorMap = new Map<String, String>();
+            errorMap.put('index','' + ex.getDmlIndex(i));
+            errorMap.put('fields','' + ex.getDmlFields(i));
+            errorMap.put('message','' + ex.getDmlMessage(i));
+            errorResults.add(errorMap);
+        }
+        errors.put('errorResults', errorResults);
+        errors.put('message', ex.getMessage());
+        errors.put('statusCode', ex.getTypeName());
+        errors.put('IsSuccess', false);
+        
+        return errors;
+        
+    }
+    
+    public class GlobalUtilityException extends Exception{}
+   
+    
+    
 }

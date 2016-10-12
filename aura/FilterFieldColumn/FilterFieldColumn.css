@@ -1,0 +1,43 @@
+.THIS {
+}
+.THIS.filterBox{
+    box-shadow: 1px 1px 1px 1px lightgrey;    
+    padding: 1rem 1rem .75rem 1rem;
+    width: 400px;
+    opacity: 1;
+    display: block;
+    z-index: 2;
+    position: absolute;
+    left: -375px;
+    border: 1px solid #d8dde6;
+    border-radius: 5px;
+    background-color: #ffffff;
+    overflow: visible;
+}
+.THIS .pointer{
+    border: 0;
+    border-right: 1px solid #d8dde6;
+    border-top: 1px solid #d8dde6;
+    width: calc(2.25rem + .0625rem);
+    height: calc(2.25rem + .0625rem);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-top: 1px solid #d8dde6;
+    /* border-left: 1px solid #d8dde6; */
+    background: #fff;
+    position: relative;
+    top: -100px;
+    left: 364px;
+}
+.THIS .floatRight{
+    float: right;
+}
+.THIS .notFull{
+    width: 90%;
+}
+.THIS .uiInput--select.select:not([multiple]), 
+.THIS .uiInput--select .select:not([multiple]), 
+.THIS .uiInput--select .uiPopupTrigger a {
+        background-image: none;
+}

@@ -1,0 +1,16 @@
+.THIS {
+}
+.THIS.home-popin {
+    position: absolute;
+    right: 0;
+    width: 40%;
+    min-width: 300px;
+    z-index: 100;
+    padding: .5rem;
+    background: white;
+    border: 1px solid #EFEFEF;
+    margin-top: 111px;
+}
+.THIS div.panelFooter{
+    Padding: 15px
+}

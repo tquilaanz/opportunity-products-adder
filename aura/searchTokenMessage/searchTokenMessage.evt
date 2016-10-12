@@ -1,3 +1,0 @@
-<aura:event type="Component">
-    <aura:attribute name="conditions" type="String" />
-</aura:event>

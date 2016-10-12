@@ -1,0 +1,40 @@
+<aura:component >
+    <aura:attribute name="_previous_class" type="String" default="page-item disabled" />
+    <aura:attribute name="_next_class" type="String" default="page-item disabled" />
+    
+    <aura:attribute name="_pagination_info" type="Object" default="{}"/>
+    <aura:attribute name="_display_buttons" type="Object[]" />
+    <aura:attribute name="_max_items" type="Integer" default="5" />
+    <aura:handler name="change" value="{!v._pagination_info}" action="{!c.updateButtons}" />
+    <aura:handler name="init" value="{!this}" action="{!c.updateButtons}" />
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="{!v._previous_class}">
+                <a class="page-link" 
+                   onclick="{!c.previous}"
+                   href="javascript:void(0);" 
+                   tabindex="-1" 
+                   aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <aura:iteration var="item" items="{!v._display_buttons}" >
+                <li class="{!item.className}">
+                    <a class="page-link" onclick="{!c.goToPage}" href="javascript:void(0);">{!item.num}</a>
+                </li>
+            
+            </aura:iteration>                        
+
+            <li class="{!v._next_class}">
+                <a class="page-link" 
+                   href="javascript:void(0);" 
+                   onclick="{!c.next}"                   
+                   aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aura:component>

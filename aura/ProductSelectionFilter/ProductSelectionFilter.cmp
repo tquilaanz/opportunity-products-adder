@@ -1,0 +1,177 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    
+    <aura:attribute name="_filter" 
+                    type="Object" />
+    <aura:attribute name="showFilterColumn"
+                    type="Boolean" default="false" />
+    <aura:attribute name="_filter_unit" 
+                    type="Object" />    
+    <aura:attribute name="_filter_list" 
+                    type="Object[]" 
+                    default="[]" />
+    <aura:attribute name="_top_size" 
+                    type="String" 
+                    default="" />
+    <aura:attribute name="showFilterLogic"
+                    type="Boolean"
+                    default="false" />
+    <aura:attribute name="_filter_logic"
+                    type="String"/>
+    <aura:attribute name="_keyword"
+                    type="String"/>
+    <aura:attribute name="showFilterBar"
+                    type="Boolean" />
+    
+    
+    <aura:handler name="applyFilter" event="c:FilterMessage" action="{!c.applyFilter}"/>
+    
+    <aside class="home-popin" aura:id="filterBar">
+        <div style="z-index: 3"
+             class="slds-panel slds-grid slds-grid--vertical slds-nowrap slds-panel--filters">
+            <div class="slds-form--stacked slds-grow slds-scrollable--y slds-grid slds-grid--vertical">
+                <div class="slds-filters">
+                    <div class="slds-filters__header slds-grid slds-has-divider--bottom-space"
+                         onclick="{!c.hideFieldColumn}">
+                        <h4 class="slds-align-middle slds-text-heading">Filter</h4>
+                        <button class="slds-button slds-col--bump-left slds-button--icon slds-button--icon-small"
+                                onclick="{!c.hideFilterBar}">
+                            <c:svg ariaHidden="true" 
+                                   class="slds-button__icon--stateful slds-button__icon--left"
+                                   xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#forward" />
+                            <!--<lightning:icon iconName="utility:forward" size="x-small" />-->
+                            <span class="slds-assistive-text">Close Filter Panel</span>
+                        </button>
+                    </div>
+
+                    <div class="slds-filters__body">
+                        <div class="slds-form-element" style="Padding-bottom: 14px;">
+                            <label class="slds-form-element__label ">Keyword</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText class="slds-input" 
+                                              placeholder="Text" 
+                                              value="{!v._keyword}"/>
+                            </div>
+                        </div>
+                        
+                        <button class="slds-button slds-button--neutral"
+                                onclick="{! c.search }" >
+                            <span class="slds-text-selected">
+                                <c:svg ariaHidden="true" 
+                                       class="slds-button__icon--stateful slds-button__icon--left"
+                                       xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#search" />
+								Search
+                            </span>
+                        </button>
+                        
+                        <!--<lightning:button variant="neutral" 
+                                          label="Search" 
+                                          iconName="utility:search" 
+                                          iconPosition="left" 
+                                          onclick="{! c.search }" />-->
+                    </div>
+                    <div class="slds-filters__body">
+                        <ol class="slds-list--vertical slds-list--vertical-space"
+                            onclick="{!c.hideFieldColumn}">
+                            <li class="slds-item slds-hint-parent">
+                                <div class="slds-filters__item slds-grid slds-grid--vertical-align-center">
+                                    <a href="javascript:void(0);" 
+                                       class="slds-grow slds-has-blur-focus"
+                                       onclick="{!c.searchForAll}">
+                                        <p class="slds-text-body--small">Show Me</p>
+                                        <p>All Records</p>
+                                    </a>
+                                </div>
+                            </li>
+                        </ol>
+                        <p class="slds-m-vertical--x-small">Matching all these filters</p>
+                        <ol class="slds-list--vertical slds-list--vertical-space"
+                            style="list-style-type: decimal;padding-left: 20px;" >
+                            <aura:iteration items="{!v._filter_list}" var="filterUnit" indexVar="index">                                
+                                <li class="slds-item slds-hint-parent">
+                                    <div class="slds-filters__item slds-grid slds-grid--vertical-align-center"
+                                         >
+                                        <a href="javascript:void(0);" 
+                                           class="slds-grow slds-has-blur-focus"
+                                           data-index="{!index}"
+										   onclick="{!c.addCondition}"                                           
+                                           >
+                                            <p class="slds-text-body--small" >{!filterUnit.label}</p>
+                                            <p id="{!index}">{!filterUnit.operatorlabel}&nbsp; {!filterUnit.value}</p>                                                                                       
+                                        </a>
+                                        <a data-index="{!index}"
+                                                class="slds-button slds-button--icon slds-button--icon-small"
+                                                onclick="{!c.removeCondition}">
+                                            <c:svg ariaHidden="true" 
+                                                   class="slds-button__icon--stateful slds-button__icon--left"
+                                                   xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#close" />
+                                            <!--<lightning:icon iconName="utility:close" size="x-small" />-->
+                                            <span class="slds-assistive-text" >Remove</span>
+                                        </a>
+                                    </div>  
+                                </li>
+                                
+                            </aura:iteration>
+                            
+                        </ol>
+                    </div>
+                    
+                    <div style="z-index: 4"
+                         class="slds-filters__footer slds-grid slds-shrink-none"
+                         onclick="{!c.hideFieldColumn}">
+                        <a href="javascript:void(0);" 
+                           onclick="{!c.addFilter}">
+                            Add Filter
+                        </a>
+                        <a href="javascript:void(0);" 
+                           class="slds-col--bump-left"
+                           onclick="{!c.removeAll}" >
+                            Remove All
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="panelFooter" data-aura-rendered-by="3473:0">
+            <aura:if isTrue="{!v._filter_list.length > 0}">
+                <div class="showHideContainer slds-p-bottom--x-small">
+                    <aura:if isTrue="{!!v.showFilterLogic}">
+                        <a class="addFilterLogic" 
+                           href="javascript:void(0);" 
+                           onclick="{!c.showFilterLogic}" >
+                            Add Filter Logic</a>
+                        
+                        <aura:set attribute="else">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="textarea-input-01">Filter Logic</label>
+                                <a class="removeFilterLogic" 
+                                   href="javascript:void(0);"
+                                   style="float: right;"
+                                   onclick="{!c.hideFilterLogic}"
+                                   >
+                                    Remove
+                                </a>
+                                <div class="slds-form-element__control">
+                                    <ui:inputTextArea class="slds-textarea" 
+                                                      placeholder="Logic" 
+                                                      value="{!v._filter_logic}"
+                                                      />
+                                </div>
+                            </div>
+                        </aura:set>
+                    </aura:if> 
+                </div>
+            </aura:if>
+            <!--render facet: 3479:0-->
+        </div>
+        <aura:If isTrue="{!v.showFilterColumn}">
+
+            <c:FilterFieldColumn _sobject_name="Product2"
+                                 _filter_unit="{!v._filter_unit}"
+                                 _top_size="{!v._top_size}"/>
+
+        </aura:If>
+    </aside>
+    
+</aura:component>

@@ -1,0 +1,9 @@
+<aura:component >
+	<aura:attribute name="_records" type="Object[]" />
+    <aura:attribute name="_display_items" type="Object[]" />
+    <aura:attribute name="_pagination_info" type="Object" />
+    <aura:attribute name="_num_per_page" type="Integer" default="10"/>
+
+    <aura:handler name="change" value="{!v._pagination_info}" action="{!c.updateRecordView}" />
+    <aura:handler name="change" value="{!v._records}" action="{!c.initiatePaginationInfo}" />
+</aura:component>

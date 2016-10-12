@@ -1,0 +1,12 @@
+<aura:component >
+    <aura:attribute name="totalSize" type="Integer" default="0"/>
+    <aura:attribute name="selectedItemNum" type="Integer" default="0" />
+    
+    <ul class="slds-list--horizontal slds-has-dividers--left" >
+        <li class="slds-item">{!v.totalSize} records</li>
+        <li class="slds-item">{!v.selectedItemNum}  items selected </li>
+    </ul>
+        
+    
+    
+</aura:component>

@@ -1,0 +1,8 @@
+.THIS {
+}
+.THIS .requiredLabel{
+	float: left;
+    padding-right: 2px;
+    color: rgb(194, 57, 52);
+    font-weight: 700;
+}
