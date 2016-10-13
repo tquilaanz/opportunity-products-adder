@@ -3,7 +3,7 @@
  * the lightning component Lightning Opportunity Product Adder
  * 
 ***/
-public class OpportunityProductsAdderController {
+public class tqaopa_OppProductsAdderController {
     @AuraEnabled
     public static Opportunity getOpportunityRecord(Id opportunityId){
         List<Opportunity> opps = [select Id, Name, Pricebook2.Id, Pricebook2.Name from Opportunity where Id =: opportunityId ];
@@ -16,7 +16,7 @@ public class OpportunityProductsAdderController {
     
     @AuraEnabled
     public static List<PriceBookEntryFeed> applyFilterSearch(Id pricebook2Id, String filterInfoStr){
-        PricebookEntryService service = new PricebookEntryService();
+        tqaopa_PricebookEntryService service = new tqaopa_PricebookEntryService();
         List<PricebookEntry> pricebookEntries 
             = service.getPricebookEntryByFilter(pricebook2Id, filterInfoStr);
         return getPricebookEntryFeeds(pricebookEntries);
@@ -37,7 +37,7 @@ public class OpportunityProductsAdderController {
     
     @AuraEnabled
     public static List<PriceBookEntryFeed> getProductCandidate(Id pricebook2Id){
-        PricebookEntryService service = new PricebookEntryService();
+        tqaopa_PricebookEntryService service = new tqaopa_PricebookEntryService();
         
         List<PriceBookEntry> priceBookEntries = service.getPricebookEntryByPBId(pricebook2Id);
         return getPricebookEntryFeeds(pricebookEntries);
@@ -45,11 +45,11 @@ public class OpportunityProductsAdderController {
     
     @AuraEnabled
     public static Map<String, Object> createOpportunityItems(String opportunityItemJSON, Id recordId){
-        OpportunityLineItemService service = new OpportunityLineItemService();
+        tqaopa_OpportunityLineItemService service = new tqaopa_OpportunityLineItemService();
         try{
             service.createOpportunityLineItems(opportunityItemJSON, recordId);
         }catch(DMLException ex){
-            Map<String, Object> errors = GlobalUtility.handleWithDMLException(ex);
+            Map<String, Object> errors = tqaopa_GlobalUtility.handleWithDMLException(ex);
             
             return errors;
         }

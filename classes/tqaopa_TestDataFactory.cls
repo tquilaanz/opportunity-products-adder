@@ -1,5 +1,5 @@
 @isTest
-public class TestDataFactory {
+public class tqaopa_TestDataFactory {
     public static Integer numOfRecords = 10;
 
     public static List<Opportunity> opportunities{
@@ -20,7 +20,7 @@ public class TestDataFactory {
     
     public static void createOpportunities(){
         List<Schema.DescribeFieldResult> oppFieldResults 
-            = GlobalUtility.getFieldApiNames('Opportunity');
+            = tqaopa_GlobalUtility.getFieldApiNames('Opportunity');
         Schema.DescribeFieldResult stageName = null;        
         for(Schema.DescribeFieldResult fieldResult : oppFieldResults){
             if(fieldResult.getName() == 'StageName'){

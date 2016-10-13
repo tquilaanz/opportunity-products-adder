@@ -1,4 +1,4 @@
-public class FieldFilterController {
+public class tqaopa_FieldFilterController {
     public class OptionList{
         public OptionList(String label, String value, String type){
             this.label = label;
@@ -21,7 +21,7 @@ public class FieldFilterController {
     @AuraEnabled
     public static OptionList[] getFieldOptions(String sobjectName){
         
-        List<Schema.DescribeFieldResult> fieldList = GlobalUtility.getFieldApiNames(sobjectName);
+        List<Schema.DescribeFieldResult> fieldList = tqaopa_GlobalUtility.getFieldApiNames(sobjectName);
         
         List<OptionList> options = new List<OptionList>();
         for(Schema.DescribeFieldResult fieldResult : fieldList){

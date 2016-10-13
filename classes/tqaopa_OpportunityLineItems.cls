@@ -1,16 +1,16 @@
-public class OpportunityLineItems {
+public class tqaopa_OpportunityLineItems {
     public List<SObject> records {public get; private set;}
-    public OpportunityLineItems(){
+    public tqaopa_OpportunityLineItems(){
     }
-    public OpportunityLineItems(List<SObject> records){
+    public tqaopa_OpportunityLineItems(List<SObject> records){
         this.records = records;
     }
     
     public List<OpportunityLineItem> convertOpportunityLineItems(
-            List<OpportunityProductsAdderController.OpportunityItem> oppItems, Id recordId){
+            List< tqaopa_OppProductsAdderController.OpportunityItem> oppItems, Id recordId){
                 
         List<OpportunityLineItem> items = new List<OpportunityLineItem>();
-        for(OpportunityProductsAdderController.OpportunityItem oppItem: oppItems){
+        for(tqaopa_OppProductsAdderController.OpportunityItem oppItem: oppItems){
             OpportunityLineItem item = new OpportunityLineItem();
             item.OpportunityId = recordId;
             item.Quantity = oppItem.quantity;

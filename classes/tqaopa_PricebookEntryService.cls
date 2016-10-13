@@ -1,16 +1,16 @@
-public class PricebookEntryService{
+public class tqaopa_PricebookEntryService{
     //
     public List<PricebookEntry> getPricebookEntryByPBId(Id pricebook2Id){
-        return PriceBookEntrySelector.getPricebookEntryByPBId(pricebook2Id);
+        return tqaopa_PriceBookEntrySelector.getPricebookEntryByPBId(pricebook2Id);
     }
     
     public List<PricebookEntry> getPricebookEntryByFilter(Id pricebook2Id, String filterInfoStr){
         List<PricebookEntry> pricebookEntries 
             = new List<PricebookEntry>();
-        ProductService productService = new ProductService();
+        tqaopa_ProductService productService = new tqaopa_ProductService();
         
-        ProductFilterCondition filterCondition = 
-            ProductFilterCondition.create(filterInfoStr);
+        tqaopa_ProductFilterCondition filterCondition = 
+            tqaopa_ProductFilterCondition.create(filterInfoStr);
         
         String condition = filterCondition.generateConditions();
         String orderBy = filterCondition.orderBy;
@@ -22,11 +22,11 @@ public class PricebookEntryService{
         }
         
         if(filterCondition.isForSearch){
-            List<Id> productIdList = new Products(productService.searchProductsByCriteria(
+            List<Id> productIdList = new tqaopa_Products(productService.searchProductsByCriteria(
                     pricebook2Id, condition, filterCondition.keyword)).getRecordIds();        
-            pricebookEntries = PriceBookEntrySelector.getPricebookEntryByPBANDProId(pricebook2Id, productIdList, orderBy);    
+            pricebookEntries = tqaopa_PriceBookEntrySelector.getPricebookEntryByPBANDProId(pricebook2Id, productIdList, orderBy);    
         }else{
-            pricebookEntries = PriceBookEntrySelector.getPricebookEntryByCondition(pricebook2Id, condition, orderBy);                            
+            pricebookEntries = tqaopa_PriceBookEntrySelector.getPricebookEntryByCondition(pricebook2Id, condition, orderBy);                            
         }
         
         return pricebookEntries;

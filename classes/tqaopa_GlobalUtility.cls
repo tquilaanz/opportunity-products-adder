@@ -4,7 +4,7 @@
  *  Date: 20/09/2016
  * 
 ****/
-public class GlobalUtility {
+public class tqaopa_GlobalUtility {
     
     /***
      * Description: get SObject type from sobject name and field name
@@ -56,7 +56,7 @@ public class GlobalUtility {
      }
     
     public static String fillStringWithSlods(
-        List<ProductFilterCondition.Filter> filterList, String filterLogic){
+        List<tqaopa_ProductFilterCondition.Filter> filterList, String filterLogic){
         String condition = '';
         Integer strLength = filterLogic.length();
         String numericString = '';
@@ -82,7 +82,7 @@ public class GlobalUtility {
             if(numericString == '' && tempNumber != ''){
                 Integer indexNum = Integer.valueOf(tempNumber);
                 indexNum --;
-                ProductFilterCondition.Filter filter = null;
+                tqaopa_ProductFilterCondition.Filter filter = null;
                 try{
                    filter = filterList.get(indexNum);
                 }catch(Exception ex){
@@ -102,7 +102,7 @@ public class GlobalUtility {
             }
             Integer indexNum = Integer.valueOf(tempNumber);
             indexNum --;
-            ProductFilterCondition.Filter filter = null;
+            tqaopa_ProductFilterCondition.Filter filter = null;
             try{
                filter = filterList.get(indexNum);
             }catch(Exception ex){

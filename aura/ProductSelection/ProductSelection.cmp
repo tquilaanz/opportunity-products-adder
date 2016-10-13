@@ -1,4 +1,4 @@
-<aura:component controller="OpportunityProductsAdderController">
+<aura:component controller="tqaopa_OppProductsAdderController">
 	<aura:attribute name="_opportunity" type="Object" required="true" />
     <aura:attribute name="selectedProductMap" type="Object" />
 

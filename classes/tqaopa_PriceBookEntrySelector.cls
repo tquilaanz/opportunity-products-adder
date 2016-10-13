@@ -1,4 +1,4 @@
-public class PriceBookEntrySelector {
+public class tqaopa_PriceBookEntrySelector {
     public static List<PricebookEntry> getPricebookEntryByPBId(Id pricebook2Id){
         String queryString ='Select Id, Product2.Id, Product2.ProductCode, '
                               + 'Product2.Family, Product2.Name, Product2.Description, UnitPrice from PricebookEntry ';

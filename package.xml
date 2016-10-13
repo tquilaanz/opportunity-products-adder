@@ -2,24 +2,24 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>OpportunityProductAdder</fullName>
     <types>
-        <members>FieldFilterController</members>
-        <members>FieldFilterControllerTest</members>
-        <members>GlobalUtility</members>
-        <members>GlobalUtilityTest</members>
-        <members>LookUpControllers</members>
-        <members>LookUpControllersTest</members>
-        <members>OpportunityLineItemService</members>
-        <members>OpportunityLineItems</members>
-        <members>OpportunityProductsAdderController</members>
-        <members>OpportunityProductsAdderControllerTest</members>
-        <members>PriceBookEntrySelector</members>
-        <members>PricebookEntrySelectorTest</members>
-        <members>PricebookEntryService</members>
-        <members>ProductFilterCondition</members>
-        <members>ProductSelector</members>
-        <members>ProductService</members>
-        <members>Products</members>
-        <members>TestDataFactory</members>
+        <members>tqaopa_FieldFilterController</members>
+        <members>tqaopa_FieldFilterControllerTest</members>
+        <members>tqaopa_GlobalUtility</members>
+        <members>tqaopa_GlobalUtilityTest</members>
+        <members>tqaopa_LookUpControllers</members>
+        <members>tqaopa_LookUpControllersTest</members>
+        <members>tqaopa_OppProductsAdderController</members>
+        <members>tqaopa_OppProductsAdderControllerTest</members>
+        <members>tqaopa_OpportunityLineItemService</members>
+        <members>tqaopa_OpportunityLineItems</members>
+        <members>tqaopa_PriceBookEntrySelector</members>
+        <members>tqaopa_PricebookEntrySelectorTest</members>
+        <members>tqaopa_PricebookEntryService</members>
+        <members>tqaopa_ProductFilterCondition</members>
+        <members>tqaopa_ProductSelector</members>
+        <members>tqaopa_ProductService</members>
+        <members>tqaopa_Products</members>
+        <members>tqaopa_TestDataFactory</members>
         <name>ApexClass</name>
     </types>
     <types>

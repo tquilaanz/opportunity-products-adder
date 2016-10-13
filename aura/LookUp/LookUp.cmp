@@ -1,4 +1,4 @@
-<aura:component controller="LookUpControllers">
+<aura:component controller="tqaopa_LookUpControllers">
     <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
 	<!--not support with filter yet -->
     <aura:attribute name="_field" type="String" required="true" />

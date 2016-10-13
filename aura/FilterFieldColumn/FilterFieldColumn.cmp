@@ -1,4 +1,4 @@
-<aura:component controller="FieldFilterController">
+<aura:component controller="tqaopa_FieldFilterController">
     <aura:attribute name="_sobject_name" 
                     type="String" />
     <aura:attribute name="_filter_unit" 

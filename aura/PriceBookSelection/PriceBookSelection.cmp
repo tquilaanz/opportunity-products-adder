@@ -1,4 +1,4 @@
-<aura:component controller="OpportunityProductsAdderController">
+<aura:component controller="tqaopa_OppProductsAdderController">
     <aura:attribute name="_opportunity" type="Opportunity" required="required" />
     <aura:registerEvent name="firePricebookCheckEvent" type="c:OpportunityPricebookCheck"/>
     

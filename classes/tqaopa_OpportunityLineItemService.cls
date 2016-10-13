@@ -1,9 +1,9 @@
-public class OpportunityLineItemService {
+public class tqaopa_OpportunityLineItemService {
     public List<OpportunityLineItem> prepareOpportunityLineItemsFromJSON(String opportunityItemJSON, Id recordId){
-         List<OpportunityProductsAdderController.OpportunityItem> items 
-            = (List<OpportunityProductsAdderController.OpportunityItem>)JSON.deserialize(opportunityItemJSON, 
-                List<OpportunityProductsAdderController.OpportunityItem>.class);
-         List<OpportunityLineItem> oppLineItems = (new OpportunityLineItems()).convertOpportunityLineItems(items, recordId);
+         List< tqaopa_OppProductsAdderController.OpportunityItem> items 
+            = (List< tqaopa_OppProductsAdderController.OpportunityItem>)JSON.deserialize(opportunityItemJSON, 
+                List< tqaopa_OppProductsAdderController.OpportunityItem>.class);
+         List<OpportunityLineItem> oppLineItems = (new tqaopa_OpportunityLineItems()).convertOpportunityLineItems(items, recordId);
          
          return oppLineItems;
     }

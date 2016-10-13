@@ -1,9 +1,9 @@
-public class ProductFilterCondition {
-    public static ProductFilterCondition create(String filterConditionString){
-        ProductFilterCondition condition = (ProductFilterCondition)JSON.deserialize(filterConditionString, ProductFilterCondition.class);
+public class tqaopa_ProductFilterCondition {
+    public static tqaopa_ProductFilterCondition create(String filterConditionString){
+        tqaopa_ProductFilterCondition condition = (tqaopa_ProductFilterCondition)JSON.deserialize(filterConditionString, tqaopa_ProductFilterCondition.class);
         return condition;
     }
-    private ProductFilterCondition(){
+    private tqaopa_ProductFilterCondition(){
         
     }
     private void setupFilterLogic(){
@@ -22,7 +22,7 @@ public class ProductFilterCondition {
        setupFilterLogic();
        String condition = '';
        if(filterLogic != null && filterLogic != ''){
-            condition = GlobalUtility.fillStringWithSlods(filterList, filterLogic);
+            condition = tqaopa_GlobalUtility.fillStringWithSlods(filterList, filterLogic);
        }
        System.debug('########The condition is #########' + condition);
        

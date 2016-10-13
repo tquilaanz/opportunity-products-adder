@@ -1,8 +1,8 @@
-public class LookUpControllers {
+public class tqaopa_LookUpControllers {
     
     @AuraEnabled
     public static String getTargetSObjectName(String sobjectName, String fieldName){
-       String targetSObjectName = GlobalUtility.getSObjectType(sobjectName, fieldName);
+       String targetSObjectName = tqaopa_GlobalUtility.getSObjectType(sobjectName, fieldName);
        return targetSObjectName; 
     }
     

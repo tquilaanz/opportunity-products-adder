@@ -1,6 +1,6 @@
-public class Products {
+public class tqaopa_Products {
     public List<Product2> records {private set; public get;}
-    public Products(List<Product2> records){
+    public tqaopa_Products(List<Product2> records){
         this.records = records;
     }
     

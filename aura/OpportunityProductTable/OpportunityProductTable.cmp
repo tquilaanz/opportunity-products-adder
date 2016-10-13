@@ -1,4 +1,4 @@
-<aura:component controller="OpportunityProductsAdderController">
+<aura:component controller="tqaopa_OppProductsAdderController">
 	<aura:attribute name="_opportunity_items" 
                     type="OpportunityLineItem[]"/>
     <aura:attribute name="headers" 

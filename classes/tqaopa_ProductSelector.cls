@@ -1,4 +1,4 @@
-public class ProductSelector {
+public class tqaopa_ProductSelector {
     public static List<List<SObject>> searchProductsByCriteria(Id priceBookId, String condition, String keyword){
         if(condition != null && condition != ''){
             condition = 'where '+ condition;

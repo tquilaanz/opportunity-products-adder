@@ -1,10 +1,10 @@
 @isTest
-private class PricebookEntrySelectorTest {
+private class tqaopa_PricebookEntrySelectorTest {
 
     
     @testSetup static void Datasetup() {
         
-        TestDataFactory.createProductsAndPriceBookEntries();
+        tqaopa_TestDataFactory.createProductsAndPriceBookEntries();
         
     }
 
@@ -14,7 +14,7 @@ private class PricebookEntrySelectorTest {
                     Product2.Name, Product2.Description, 
                     UnitPrice from PricebookEntry where Product2.Name = 'Test Product 0' LIMIT 1][0].Pricebook2Id;
         system.debug('Id****'+pBEId);           
-        List<PricebookEntry>searchEntriesList = PriceBookEntrySelector.getPricebookEntryByPBId(pBEId);
+        List<PricebookEntry>searchEntriesList = tqaopa_PriceBookEntrySelector.getPricebookEntryByPBId(pBEId);
                 system.assertEquals(searchEntriesList.size(),10);
                     
     }
@@ -24,7 +24,7 @@ private class PricebookEntrySelectorTest {
                     UnitPrice from PricebookEntry where Product2.Name = 'Test Product 0' LIMIT 1][0].Pricebook2Id; 
         
         string condition = 'Product2.Name LIKE \'Test%\'';            
-        List<PricebookEntry>searchEntriesList = PriceBookEntrySelector.getPricebookEntryByCondition(pBEId,condition,'Order By Name');               
+        List<PricebookEntry>searchEntriesList = tqaopa_PriceBookEntrySelector.getPricebookEntryByCondition(pBEId,condition,'Order By Name');               
         system.assertEquals(searchEntriesList.size(),10);
 
     }
@@ -34,7 +34,7 @@ private class PricebookEntrySelectorTest {
             Product2Ids.add(pp.Id);    
         }
         Id pb2Id = Test.getStandardPricebookId();
-        List<PricebookEntry>searchEntriesList = PriceBookEntrySelector.getPricebookEntryByPBANDProId(pb2Id,Product2Ids,'Order By Name');               
+        List<PricebookEntry>searchEntriesList = tqaopa_PriceBookEntrySelector.getPricebookEntryByPBANDProId(pb2Id,Product2Ids,'Order By Name');               
         system.assertEquals(searchEntriesList.size(),10);
 
     }    
