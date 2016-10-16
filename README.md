@@ -32,3 +32,10 @@ bulking creating opportunity products becoming possible in current Lightning exp
 15. Drag OpportunityProductsAdder Component into "PRODUCT ADDER" section
 16. Click "Save" and choose "Activate"
 17. Check "Active" checkbox and click "Save" 
+
+#Architect diagram
+To help understand how it works, please see the diagram below:
+<img alt="Deploy to Salesforce" 
+    src="https://tquilaanz.box.com/shared/static/5fqof2t1154v30pfnxkpxamyw3oxpiki.jpeg" style="max-width:100%;" />
+    
+    
