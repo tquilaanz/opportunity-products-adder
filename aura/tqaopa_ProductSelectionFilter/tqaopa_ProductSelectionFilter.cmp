@@ -1,5 +1,5 @@
 <aura:component >
-    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="/resource/tqaopa_slds212/assets/styles/salesforce-lightning-design-system.css" />
     
     <aura:attribute name="_filter" 
                     type="Object" />
@@ -38,7 +38,7 @@
                                 onclick="{!c.hideFilterBar}">
                             <c:tqaopa_svg ariaHidden="true" 
                                    class="slds-button__icon--stateful slds-button__icon--left"
-                                   xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#forward" />
+                                   xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#forward" />
                             <!--<lightning:icon iconName="utility:forward" size="x-small" />-->
                             <span class="slds-assistive-text">Close Filter Panel</span>
                         </button>
@@ -59,7 +59,7 @@
                             <span class="slds-text-selected">
                                 <c:tqaopa_svg ariaHidden="true" 
                                        class="slds-button__icon--stateful slds-button__icon--left"
-                                       xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#search" />
+                                       xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#search" />
 								Search
                             </span>
                         </button>
@@ -104,7 +104,7 @@
                                                 onclick="{!c.removeCondition}">
                                             <c:tqaopa_svg ariaHidden="true" 
                                                    class="slds-button__icon--stateful slds-button__icon--left"
-                                                   xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#close" />
+                                                   xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#close" />
                                             <!--<lightning:icon iconName="utility:close" size="x-small" />-->
                                             <span class="slds-assistive-text" >Remove</span>
                                         </a>

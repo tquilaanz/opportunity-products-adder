@@ -1,6 +1,6 @@
 <aura:component controller="tqaopa_OppProductsAdderController"
                 implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
-    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="/resource/tqaopa_slds212/assets/styles/salesforce-lightning-design-system.css" />
     
     <aura:attribute name="_record" type="Object" />
 

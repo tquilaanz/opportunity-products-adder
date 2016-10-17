@@ -1,5 +1,5 @@
 <aura:component >
-    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    <ltng:require styles="/resource/tqaopa_slds212/assets/styles/salesforce-lightning-design-system.css" />
     <aura:attribute name="paginationInfo" type="Object" />
     <aura:attribute name="productCandidatesInCurrentPage" type="Object[]" />
 	<aura:attribute name="productCandidates" type="Object[]" />
@@ -69,7 +69,7 @@
                <span aura:id="filterList">
                     <c:tqaopa_svg ariaHidden="true" 
                            class="slds-icon slds-icon-text-default slds-icon--x-small slds-icon"
-                           xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#filterList" />
+                           xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#filterList" />
                 </span>
                 <!--<lightning:icon iconName="utility:filterList" size="x-small"  aura:id="filterList"/>-->
             </a>

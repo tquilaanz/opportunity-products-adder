@@ -34,12 +34,12 @@
                     <span class="{!v.arrowDownClass}">
                         <c:tqaopa_svg ariaHidden="true" 
                                class="slds-icon slds-icon-text-default slds-icon--x-small slds-icon"
-                               xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#arrowdown" />
+                               xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#arrowdown" />
                     </span>
                     <span class="{!v.arrowUpClass}">                    
                     <c:tqaopa_svg ariaHidden="true" 
                            class="slds-icon slds-icon-text-default slds-icon--x-small slds-icon" 
-                           xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#arrowup" />
+                           xlinkHref="/resource/tqaopa_slds212/assets/icons/utility-sprite/svg/symbols.svg#arrowup" />
                     </span>
                     <!--<lightning:icon class="{!v.arrowDownClass}"
                                     iconName="utility:arrowdown"
