@@ -6,36 +6,28 @@
   </a>
 </p>
 
-#This Library
-Is contributed by <a href="http://www.tquilaanz.com/">Tquila ANZ team</a>. It is used in lightning experience. When the classic
-Salesforce.com is on, opportunity products can be added as a bulk way. However, in lightning experience(winter 17), bulk creating
-opportunity products is not available yet. Thus, it is worthwhile to share the Opportunity Products Adder Lightning components so that
-bulking creating opportunity products becoming possible in current Lightning experience.
+#About This Tool
+This tool has been developed by the <a href="http://www.tquilaanz.com/">Tquila ANZ team</a>.
+
+The purpose of this tool is to bring the "Add Multiple Products to an Opportunity" functionality of Salesforce Classic to Lightning Experience. Though this will likely be implemented natively by Salesforce at some point in the future, we used this as a learning exercise and thought we'd share the results with everybody. 
+
+Once installed, you can add the Opportunity Product Adder to a Lightning Page to add multiple products to an opportunity, in a wizard style that will be recognisable to Salesforce Classic users. Select a pricebook, search for products and select them, then enter their details before adding them to an Opportunity. 
+
+We hope you find this tool useful, but it is provided "as-is" - we've tested the tool, but can't anticipate every configuration, therefore if you find issues, please feel free to raise an issue.
 
 #Steps for set up
-(in lightning experience)
+Install the tool using the "Deploy to Salesforce" at the top of this README. Once that's done, the tool can be added to the Opportunity page (instructions assume user is in Lightning Experience)
 
-1. Go to setup Home
-2. Go to Objects and Fields -> Object Manager
-3. Find "Opportunity" and click into it.
-4. Find Lightning Record Pages and click "New"
-5. Choose "Record Page" and click "Next"
-6. Select "Header, Subheader, Two Columns" and click "Next"
-7. Provide a Lable and in Object choose "Opportunity"
-8. Drag the Highlights Panel to the Header section
-9. Drag the Sales Path to the Sub Header section
-10. Drag the Tabs to the Left Column section
-11. Drag the related list to the Right Column section
-12. Rename Related tab to be "ACTIVITY" and drag Activities in it
-13. Drag Record Detail component in "DETAILS"
-14. Add Tab and name it as "Product Adder"
-15. Drag OpportunityProductsAdder Component into "PRODUCT ADDER" section
-16. Click "Save" and choose "Activate"
-17. Check "Active" checkbox and click "Save" 
+1. View an Opportunity Record
+2. Click on the cog icon in the top right and go to Edit Page
+3. Click on the Tabs area in the main component (e.g. where Activity and Chatter reside)
+4. On the right hand side, click Add Tab
+5. Click on the new Tab row, then set the tab to be Custom, then give the tab a name i.e. Add Products
+6. Click on the tab in the main App Builder area
+7. Drag the OpportunityProductsAdder component across from the left hand side onto the "Add Component Here" area 
+8. Click Save then Activate. Assign the page as necessary.
 
-#Architect diagram
-To help understand how it works, please see the diagram below:
+#Architecture diagram
+To help understand how the architecture of the components in this tool, please see the diagram below:
 <img alt="Deploy to Salesforce" 
     src="https://tquilaanz.box.com/shared/static/5fqof2t1154v30pfnxkpxamyw3oxpiki.jpeg" style="max-width:100%;" />
-    
-    
