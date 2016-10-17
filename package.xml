@@ -23,30 +23,30 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>CreateProductEvent</members>
-        <members>FilterFieldColumn</members>
-        <members>FilterMessage</members>
-        <members>InputColumn</members>
-        <members>LookUp</members>
-        <members>OpportunityPricebookCheck</members>
-        <members>OpportunityProductAdderApp</members>
-        <members>OpportunityProductEvent</members>
-        <members>OpportunityProductTable</members>
-        <members>OpportunityProductsAdder</members>
-        <members>PaginationButtons</members>
-        <members>PriceBookSelection</members>
-        <members>ProductSelection</members>
-        <members>ProductSelectionFilter</members>
-        <members>ProductSelectionTable</members>
-        <members>ProductSelectionTableListView</members>
-        <members>RecordsPaginator</members>
-        <members>TableHeader</members>
-        <members>Tooltip</members>
-        <members>svg</members>
+        <members>tqaopa_CreateProductEvent</members>
+        <members>tqaopa_FilterFieldColumn</members>
+        <members>tqaopa_FilterMessage</members>
+        <members>tqaopa_InputColumn</members>
+        <members>tqaopa_LookUp</members>
+        <members>tqaopa_OpportunityPricebookCheck</members>
+        <members>tqaopa_OpportunityProductAdderApp</members>
+        <members>tqaopa_OpportunityProductEvent</members>
+        <members>tqaopa_OpportunityProductTable</members>
+        <members>tqaopa_OpportunityProductsAdder</members>
+        <members>tqaopa_PaginationButtons</members>
+        <members>tqaopa_PriceBookSelection</members>
+        <members>tqaopa_ProductSelection</members>
+        <members>tqaopa_ProductSelectionFilter</members>
+        <members>tqaopa_ProductSelectionTable</members>
+        <members>tqaopa_ProductSelectionTableListView</members>
+        <members>tqaopa_RecordsPaginator</members>
+        <members>tqaopa_TableHeader</members>
+        <members>tqaopa_Tooltip</members>
+        <members>tqaopa_svg</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
-        <members>slds212</members>
+        <members>tqaopa_slds212</members>
         <name>StaticResource</name>
     </types>
     <version>36.0</version>

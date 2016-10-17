@@ -1,0 +1,30 @@
+<aura:component >
+    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    <aura:attribute name="context" 
+                    type="String" />        
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:handler name="change" value="{!v.context}" action="{!c.toggleToolTip}" />
+    
+    <aura:If isTrue="{!v.showError}" >
+        <div style="margin-left:25px;position:relative" 
+             class="element-with-tooltip" >
+            <div class="slds-popover slds-popover--tooltip slds-nubbin--bottom-left tooltip" 
+                 role="tooltip" id="help" 
+                 style="top: -65px;">
+                <div class="slds-popover__body">
+                    {!v.context}
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <span class="slds-form-element__icon slds-align-middle">
+                    <button class="slds-button slds-button slds-button--icon" aria-describedby="help">
+                        <c:tqaopa_svg ariaHidden="true" class="slds-button__icon"
+                               xlinkHref="/resource/SLDS212/assets/icons/utility-sprite/svg/symbols.svg#warning" />
+                        <span class="slds-assistive-text">Help</span>
+                    </button>
+                </span>
+            </div>
+            
+        </div>
+    </aura:If>
+</aura:component>

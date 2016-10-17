@@ -1,0 +1,80 @@
+<aura:component controller="tqaopa_FieldFilterController">
+    <aura:attribute name="_sobject_name" 
+                    type="String" />
+    <aura:attribute name="_filter_unit" 
+                    type="Object" 
+                    />
+    <aura:attribute name="_top_size" type="String" default="" />
+    <aura:attribute name="_field_List" type="Object[]" />
+    <aura:attribute name="_field_type" type="String" default="STRING"/>
+    <aura:attribute name="_operator_map" type="Object" access="private"/>
+    <aura:attribute name="_operator_list" type="Object[]" access="private"/>
+            
+    <aura:registerEvent name="applyFilter" type="c:tqaopa_FilterMessage"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <div class="filterBox" style="{!v._top_size}">
+        <div class="notFull">
+            <span class="assistiveText">
+                Start of Dialog
+            </span>
+            
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" 
+                       for="fieldSelector">Field</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <ui:inputselect class="slds-select"
+                                        value="{!v._filter_unit.field}"
+                                        aura:id="fieldSelector"
+                                        change="{!c.updateInputType}"
+                                        > 
+                            <Option value="">--None--</Option>
+
+                            <aura:iteration items="{!v._field_List}" var="item" >
+                                <Option value="{!item.value}" selected="{!item.selected}">{!item.label}</Option>
+
+                            </aura:iteration>                                
+                        </ui:inputselect>  
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slds-form-element">
+                <label class="slds-form-element__label" for="operatorSelector">Operator</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <ui:inputselect class="slds-select" 
+                                        value="{!v._filter_unit.operator}"
+                                        aura:id="operatorSelector" 
+                                        change="{!c.updateOperator}"
+                                        > 
+                            <option value="">--None--</option>
+                            <aura:iteration items="{!v._operator_list}" var="operator" >
+                                <option value="{!operator.value}" selected="{!operator.selected}">{!operator.label}</option>
+                            </aura:iteration>
+                        </ui:inputselect>  
+                    </div>
+                </div>
+            </div>
+            
+
+            <div style="margin-bottom: 10px;min-height:50px">            
+                <c:tqaopa_InputColumn _value="{!v._filter_unit.value}" _field_type="{!v._field_type}" />
+            </div>                
+			
+            <button class="slds-button slds-button--neutral floatRight"
+                    onclick="{! c.updateFilter }">
+                Done
+            </button>
+            <!--
+            <lightning:button class="floatRight"
+                              variant="neutral" 
+                              label="Done" 
+                              onclick="{! c.updateFilter }" />	-->
+        </div>
+        <div class="pointer">    
+        </div>    	
+        
+    </div>
+</aura:component>

@@ -1,0 +1,49 @@
+<aura:component controller="tqaopa_OppProductsAdderController"
+                implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <ltng:require styles="/resource/SLDS212/assets/styles/salesforce-lightning-design-system.css" />
+    
+    <aura:attribute name="_record" type="Object" />
+
+
+    <aura:attribute name="_opportunity_items" type="Object[]" access="public"/>    
+    <aura:attribute name="_error" type="String" />
+    <aura:attribute name="recordId" type="Id" />
+    <aura:attribute name="showProductSelection" type="Boolean" default="true" />
+    <aura:attribute name="showSpinner" type="Boolean" default="true" />
+
+    <aura:handler name="firePricebookCheckEvent" 
+                  event="c:tqaopa_OpportunityPricebookCheck" 
+                  action="{!c.init}"/>  
+    <aura:dependency resource="markup://force:editRecord" type="EVENT" />
+
+    <aura:handler event="force:refreshView" 
+                  action="{!c.init}"/>  
+    <aura:handler name="init" 
+                  action="{!c.init}" 
+                  value="{!this}" />
+    <aura:handler name="change" action="{!c.afterOpportunityLoads}" value="{!v._record}" />
+    <aura:handler name="createProducts" event="c:tqaopa_CreateProductEvent" action="{!c.createOppProd}"/>    
+    <aura:handler name="handleOppProducts" event="c:tqaopa_OpportunityProductEvent" action="{!c.handleOppProducts}" />
+    
+    
+    <aura:If isTrue="{!v.showSpinner}"> 
+        <div class="slds-spinner_container">
+        <div class="slds-spinner slds-spinner--medium" role="alert">
+            <span class="slds-assistive-text">Loading</span>
+            <div class="slds-spinner__dot-a"></div>
+            <div class="slds-spinner__dot-b"></div>
+        </div>
+    </div>
+        <!--<lightning:spinner variant="brand" size="large" />-->
+    </aura:If>
+    
+    <aura:If isTrue="{!v.showProductSelection}">
+        <c:tqaopa_ProductSelection _opportunity="{!v._record}" />        
+        <aura:set attribute="else">
+            <c:tqaopa_OpportunityProductTable aura:id="opportunityProductTable"
+                                       _opportunity_items="{!v._opportunity_items}"
+                                        />
+        </aura:set>
+    </aura:If>
+ 
+</aura:component>

@@ -1,0 +1,48 @@
+<aura:component controller="tqaopa_OppProductsAdderController">
+    <aura:attribute name="_opportunity" type="Opportunity" required="required" />
+    <aura:registerEvent name="firePricebookCheckEvent" type="c:tqaopa_OpportunityPricebookCheck"/>
+    
+    <div class="slds-modal__header">      
+        <h2 id="header43" class="slds-text-heading--medium">Choose Pricebook</h2>
+    </div>
+    
+    <div class="slds-p-around--medium pbTextGeneral pbDescription" 
+         data-aura-rendered-by="6:1536;a">
+        <ul>
+            <li>
+                Select a Price Book to associate with this opportunity. 
+            </li>
+            <li>
+                You can add products only from the Price Book you associate with this opportunity. 
+            </li>
+            <li>
+                Changing the Price Book deletes all products from the opportunity.
+            </li>
+        </ul>
+    </div>
+    <div class="slds-p-around--medium">
+        
+        
+        <c:tqaopa_LookUp _field="Pricebook2Id" 
+                  _sobject="Opportunity" 
+                  _value="{!v._opportunity.Pricebook2Id}"
+                  _label="Price Book"
+                  _filter=" IsActive = true "
+                  />
+    </div>
+        
+    <div class="button-align-right">
+        <button onclick="{!c.cancel}" 
+                name="cancel"
+                aura:id="cancel"
+                class="slds-button slds-button--neutral">
+            Cancel
+        </button>
+        <button onclick="{!c.saveOpportunity}" 
+                name="select"
+                aura:id="select"
+                class="slds-button slds-button--brand">
+            Select
+        </button>
+    </div>        
+</aura:component>

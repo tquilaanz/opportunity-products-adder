@@ -1,0 +1,34 @@
+<aura:component controller="tqaopa_OppProductsAdderController">
+	<aura:attribute name="_opportunity" type="Object" required="true" />
+    <aura:attribute name="selectedProductMap" type="Object" />
+
+    <aura:attribute name="productCandidates" type="Object[]" />
+    <aura:attribute name="_filter" type="Object" />
+    <aura:attribute name="showFilterBar" 
+                    type="Boolean" 
+                    default="false" />
+    <aura:attribute name="orderBy" type="String" />
+    <aura:handler name="change" action="{!c.getProductCandidates}" value="{!v._opportunity}" />    
+    <aura:handler name="change" action="{!c.applyFilter}" value="{!v._filter}" />
+    <aura:handler name="change" action="{!c.toggleFilterBar}" value="{!v.showFilterBar}" />
+
+    
+    <div aura:id="pricebookSelection" class="slds-hide">
+        <!-- go to pricebook selection-->
+        <c:tqaopa_PriceBookSelection _opportunity="{!v._opportunity}" />
+    </div>
+    <div aura:id="productSelection" class="slds-hide">
+        <div class= "slds-hide" aura:id="productFilterBar">
+            <c:tqaopa_ProductSelectionFilter _filter="{!v._filter}" 
+                                      showFilterBar="{!v.showFilterBar}"
+                                      />
+        </div>
+        <!-- go to products selection-->
+        
+        <c:tqaopa_ProductSelectionTable selectedProductMap="{!v.selectedProductMap}"
+                                 productCandidates="{!v.productCandidates}"
+                                 showFilterBar="{!v.showFilterBar}"
+                                 orderBy="{!v.orderBy}"
+                                 />
+    </div>   
+</aura:component>

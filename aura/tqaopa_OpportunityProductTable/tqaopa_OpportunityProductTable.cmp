@@ -1,0 +1,120 @@
+<aura:component controller="tqaopa_OppProductsAdderController">
+	<aura:attribute name="_opportunity_items" 
+                    type="OpportunityLineItem[]"/>
+    <aura:attribute name="headers" 
+                    type="Object[]" 
+                    default="[{label: 'Product', required: false, showIcons: false}, 
+                             {label: 'Quantity', required: true, showIcons: false}, 
+                             {label: 'Sales Price', required: true, showIcons: false}, 
+                             {label: 'Date', required: false, showIcons: false},
+                             {label: 'Line Description', required: false, showIcons: false}]"
+                    access="private"
+                    />
+    <aura:attribute name="_error" type="String" />
+    
+    <aura:method name="handleError" action="{!c.handleErrors}" >
+		<aura:attribute name="_server_response" type="Object" />
+    </aura:method>
+    
+    <aura:registerEvent name="handleOppProducts" type="c:tqaopa_OpportunityProductEvent"/>
+    
+	<div class="slds-grid">
+        <div class="slds-col subHeader">
+            <div class="slds-container--left pageTitle">
+               New Opportunity Products
+            </div>
+        </div>
+        <div class="subHeader slds-grid--vertical-align-end">
+            <div class="slds-button-group" role="group">
+                <div class="slds-button-group" role="group">
+                    <button class="slds-button slds-button--neutral"
+                            onclick="{!c.cancel}" 
+                            name="cancel">
+                        Cancel
+                    </button>
+                    <button class="slds-button slds-button--neutral slds-button--brand"
+                            onclick="{!c.save}" 
+                            name="select">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <aura:if isTrue="{!v._error.length > 0}">
+        <div class="slds-notify--alert slds-theme--error">
+            {!v._error}
+        </div>
+    </aura:if>
+    <table class="slds-table slds-table--bordered slds-table--fixed-layout" role="grid">
+        <thead>
+            <tr class="">
+                <aura:iteration items="{!v.headers}" var="header">
+                	<c:tqaopa_TableHeader label="{!header.label}" 
+                                   showIcons="{!header.showIcons}"
+                                   required="{!header.required}"
+                                   orderBy="{!v.orderBy}"
+                                   disableOrderBy="true" />
+                </aura:iteration>                
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v._opportunity_items}" var="item" indexVar="index" >
+                <tr class="slds-hint-parent">
+                    <th scope="row" data-label="Product Name">
+                        <div class=" slds-grid slds-cell-wrap slds-grid--pull-padded" title="{!item.productName}">
+                            <div class="slds-p-horizontal--small slds-size--9-of-12 slds-medium-size--9-of-12 slds-large-size--9-of-12">
+                                <ui:outputText value="{!item.productName}"/>
+                            </div>
+                            <div class="slds-p-horizontal--small 
+                                        slds-size--2-of-12 
+                                        slds-medium-size--2-of-12 
+                                        slds-large-size--2-of-12">
+	                            <c:tqaopa_Tooltip context="{!item.errors.message}"/>
+                            </div>
+                            <div class="slds-p-horizontal--small 
+                                        slds-size--1-of-12
+                                        slds-medium-size--1-of-12 
+                                        slds-large-size--1-of-12">
+                            </div>
+                        </div>
+
+                    </th>
+                    <th scope="row" data-label="Quantity">                        
+                        <div class="slds-truncate" title="Quantity">
+                            <ui:inputNumber class="{!item.errors.quantity + ' UIField'}"
+                                            value="{!item.quantity}"
+                                            required="true"/>
+                        </div>
+                    </th>
+                    <th scope="row" data-label="Sales Price">                        
+                        <div class="slds-truncate" 
+                             title="Sales Price">
+                            <ui:inputCurrency class="{!item.errors.salesPrice + ' UIField'}"
+                                              value="{!item.salesPrice}"
+                                              required="true"/>
+                        </div>
+                    </th>
+                    <th scope="row" data-label="Date">
+                        <div class="slds-cell-wrap" title="Date">
+                            <ui:inputDate aura:id="date"
+                                          class="{!item.errors.serviceDate + ' UIField'}"  
+                                          value="{!item.serviceDate }" 
+                                          displayDatePicker="true"/>   
+                        </div>
+                    </th>
+                    <th scope="row" data-label="Line Description">
+                        <div class="slds-cell-wrap" title="Line Description">
+                            <ui:inputText aura:id="lineDescription"                  
+                                          class="{!item.errors.description + ' UIField'}"                                 
+                                          value="{!item.description}" />
+                        </div>
+                    </th>
+                </tr>
+            </aura:iteration>
+        </tbody>
+        
+        
+    </table>
+</aura:component>
