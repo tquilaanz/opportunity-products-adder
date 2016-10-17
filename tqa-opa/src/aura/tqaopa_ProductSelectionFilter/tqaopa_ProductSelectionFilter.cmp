@@ -71,19 +71,7 @@
                                           onclick="{! c.search }" />-->
                     </div>
                     <div class="slds-filters__body">
-                        <ol class="slds-list--vertical slds-list--vertical-space"
-                            onclick="{!c.hideFieldColumn}">
-                            <li class="slds-item slds-hint-parent">
-                                <div class="slds-filters__item slds-grid slds-grid--vertical-align-center">
-                                    <a href="javascript:void(0);" 
-                                       class="slds-grow slds-has-blur-focus"
-                                       onclick="{!c.searchForAll}">
-                                        <p class="slds-text-body--small">Show Me</p>
-                                        <p>All Records</p>
-                                    </a>
-                                </div>
-                            </li>
-                        </ol>
+                        
                         <p class="slds-m-vertical--x-small">Matching all these filters</p>
                         <ol class="slds-list--vertical slds-list--vertical-space"
                             style="list-style-type: decimal;padding-left: 20px;" >
