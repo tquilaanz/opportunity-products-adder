@@ -65,6 +65,9 @@ public class tqaopa_ProductFilterCondition {
             String filterUnit = '';
             field = crossObj + field.trim();
             String valueUnit = value;
+            field = String.escapeSingleQuotes(field);
+            
+            valueUnit = String.escapeSingleQuotes(valueUnit);
             
             if(operator.contains('like')){
                 valueUnit =  '\'%' + valueUnit +'%\' ';

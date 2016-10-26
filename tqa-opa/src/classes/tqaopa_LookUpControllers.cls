@@ -10,7 +10,7 @@ public class tqaopa_LookUpControllers {
     public static List<SObject> searchKeyword(String objectName, String value){
         value = '%'+ value + '%';
         System.debug('the value is ' + value);
-        String queryString = 'Select Id, Name from ' + objectName + ' where Name like : value';
+        String queryString = 'Select Id, Name from ' + String.escapeSingleQuotes(objectName) + ' where Name like : value';
         
         return Database.query(queryString);
     }
@@ -19,10 +19,10 @@ public class tqaopa_LookUpControllers {
     public static List<SObject> searchKeyword(String objectName, String value, String filter){
         value = '%'+ value + '%';
         System.debug('the value is ' + value);
-        String queryString = 'Select Id, Name from ' + objectName + ' where Name like : value ' ;
+        String queryString = 'Select Id, Name from ' + String.escapeSingleQuotes(objectName) + ' where Name like : value ' ;
         if(filter != '' && filter != null){
             queryString += 'and ';
-            queryString += filter;
+            queryString += String.escapeSingleQuotes(filter);
         }
         return Database.query(queryString);
     }
