@@ -40,6 +40,7 @@
 		filterList.splice(index, 1);
 		console.log('index is '+index);
         component.set("v._filter_list", filterList);
+        component.set("v.showFilterColumn", false);
     },
     hideFieldColumn  : function(component, event, helper){
         component.set("v.showFilterColumn", false);
